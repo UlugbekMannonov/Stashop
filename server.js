@@ -1,14 +1,10 @@
+const dotenv = require("dotenv");
+dotenv.config();
+
 const http = require("http");
 const mongodb = require("mongodb");
+const connectionString = process.env.MONGO_URL;
 
-// const express = require("express");
-// const app = express();
-// const fs = require("fs");
-// const { listen } = require("./app");
-let db;
-const connectionString =
-    "mongodb+srv://mongostas:lSHpiRCAvbpQXiDN@cluster0.gkia0rc.mongodb.net/Stashop";
-  
 mongodb.connect(
   connectionString,
   {
@@ -18,15 +14,15 @@ mongodb.connect(
   (err, client) => {
     if (err) console.log("Error on connection MongoDB");
     else {
-        console.log("MongoDB connection succed");
-        module.exports = client;
-        
-        const app = require("./app");
-        const server = http.createServer(app);
-        let PORT = 8000;
-        server.listen(PORT, function () {
-            console.log(
-                `The server is running successfully on PORT: ${PORT}, http://localhost${PORT}`
+      console.log("MongoDB connection succed");
+      module.exports = client;
+
+      const app = require("./app");
+      const server = http.createServer(app);
+      let PORT = process.env.PORT || 8003;
+      server.listen(PORT, function () {
+        console.log(
+          `The server is running successfully on PORT: ${PORT}, http://localhost${PORT}`
         );
       });
     }

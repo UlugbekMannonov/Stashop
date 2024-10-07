@@ -12,6 +12,7 @@
   "author": "Ulugbek Mannonov",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "^16.4.5",
     "express": "^4.21.0",
     "mongodb": "^3.2.6",
     "nodemon": "^3.1.7"
